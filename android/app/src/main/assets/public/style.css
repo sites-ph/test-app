@@ -1,0 +1,416 @@
+/* ---
+  PESOTRACKER PORTFOLIO-LEVEL STYLESHEET
+  Author: James Darrol Nate (with Gemini)
+  Version: 3.2 (Final Polish with Fixes)
+--- */
+
+/* --- 1. FONT IMPORT --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- 2. COLOR & SPACING VARIABLES --- */
+:root {
+    /* Palette */
+    --primary-color: #219ebc; 
+    --primary-light: rgba(33, 158, 188, 0.1);
+    --secondary-color: #023047; 
+    --light-blue-accent: #8ecae6;
+    --success-color: #ffb703; /* Yellow */
+    --danger-color: #fb8500;  /* Orange */
+    --neutral-color: #42526E;
+    --bg-color: #F7F8FA;
+    --card-bg-color: #FFFFFF;
+    --border-color: #DFE1E6;
+    --text-primary: #023047;   
+    --text-secondary: #5E6C84;
+    --text-on-btn: #FFFFFF;
+    --text-on-dark: #FFFFFF;
+    --text-on-accent: #023047;
+
+    /* Spacing */
+    --space-4: 4px; --space-8: 8px; --space-12: 12px; --space-16: 16px;
+    --space-24: 24px; --space-32: 32px; --space-48: 48px;
+
+    /* Shadows */
+    --shadow-sm: 0px 1px 3px rgba(23, 43, 77, 0.1);
+    --shadow-md: 0px 4px 8px rgba(23, 43, 77, 0.05), 0px 1px 3px rgba(23, 43, 77, 0.1);
+    --shadow-lg: 0px 10px 20px rgba(23, 43, 77, 0.1), 0px 3px 6px rgba(23, 43, 77, 0.07);
+
+    /* Transitions */
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Header Height (Approx) */
+    --header-height-desktop: 61px;
+    --header-height-mobile: 57px; 
+}
+
+/* --- 3. GLOBAL RESET & BASE STYLES --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container { max-width: 800px; margin: 0 auto; padding: 0 var(--space-24); width: 100%; }
+
+main {
+    flex-grow: 1; 
+    /* SPACING FIX: Space below sticky header */
+    padding-top: calc(var(--header-height-desktop) + var(--space-32)); 
+    padding-bottom: var(--space-32);
+}
+
+.card {
+    background: var(--card-bg-color);
+    padding: var(--space-32);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-24);
+    border: 1px solid var(--border-color);
+}
+
+.text-center { text-align: center; }
+
+/* --- 4. WELCOME PAGE (LIVELY UPGRADE & CENTERING FIX) --- */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.body-welcome {
+    background: linear-gradient(-45deg, #219ebc, #8ecae6, #ffb703, #fb8500);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-on-dark);
+    display: flex; /* Needed for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+/* Override padding for welcome page */
+.body-welcome main { padding-top: 0; padding-bottom: 0; }
+.body-welcome .container.welcome-main { padding: var(--space-24); } /* Add padding back to container */
+.body-welcome #main-footer { background: transparent; color: var(--text-on-dark); }
+
+.welcome-container {
+    animation: fadeInUp 0.8s ease-out;
+    text-align: center;
+}
+
+
+
+/* DARK FROSTED GLASS CARD SA INDEX */
+.welcome-card {
+    background: rgba(2, 48, 71, 0.7); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-32) var(--space-24); 
+    border-radius: 16px; 
+    width: 100%; /* Make card take container width */
+    max-width: 450px; /* Limit max width */
+    margin: 0 auto; /* Center card horizontally */
+}
+
+.logo-large { font-size: 4rem; margin-bottom: var(--space-12); }
+.welcome-container h1 { font-size: 2.2rem; font-weight: 700; color: var(--text-on-dark); margin-bottom: var(--space-8); }
+.welcome-container p { font-size: 1rem; color: var(--text-on-dark); opacity: 0.9; margin-bottom: var(--space-32); max-width: 350px; margin-left: auto; margin-right: auto; }
+.btn-large { font-size: 1.1rem; padding: var(--space-16) var(--space-32); }
+
+/* --- 5. HEADER (DARK & BLURRED NAV) --- */
+header {
+    background-color: rgba(2, 48, 71, 0.85); 
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    padding: var(--space-16) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky; top: 0; z-index: 10; box-shadow: var(--shadow-sm);
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+header .logo { font-size: 1.5em; font-weight: 700; color: var(--text-on-dark); text-decoration: none; }
+header .back-link { color: var(--text-on-dark); text-decoration: none; font-size: 0.95em; font-weight: 600; transition: var(--transition); opacity: 0.8; }
+header .back-link:hover { opacity: 1; }
+
+/* --- 6. FOOTER (Stays at bottom) --- */
+#main-footer { text-align: center; padding: var(--space-24) 0; background-color: #34495e; color: #ecf0f1; margin-top: auto; font-size: 0.85em; letter-spacing: 0.5px; flex-shrink: 0; }
+
+/* --- 7. BUTTONS (BAGONG PALETTE) --- */
+.btn {
+    display: flex; align-items: center; justify-content: center; gap: var(--space-8);
+    background: var(--primary-color); color: var(--text-on-btn); border: none;
+    padding: var(--space-12) var(--space-24); border-radius: 8px; cursor: pointer;
+    text-decoration: none; font-size: 1.05em; font-weight: 600; text-align: center;
+    width: 100%; margin-bottom: 0; /* REMOVED margin-bottom, use gap */ transition: var(--transition); box-shadow: var(--shadow-sm);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0); box-shadow: none; }
+.btn-add { background-color: var(--success-color); color: var(--text-on-accent); }
+.btn-subtract { background-color: var(--danger-color); color: var(--text-on-btn); }
+.btn-neutral { background-color: var(--neutral-color); color: var(--text-on-btn); }
+.btn-primary { background-color: var(--primary-color); color: var(--text-on-btn); }
+.btn span { font-size: 1.2em; }
+
+/* --- 8. DASHBOARD --- */
+#dashboard h2 { margin-bottom: var(--space-8); color: var(--text-secondary); font-weight: 500; font-size: 1.2rem; }
+#current-balance { font-size: clamp(2.8rem, 8vw, 4.5rem); font-weight: 700; color: var(--text-primary); letter-spacing: -2px; }
+#actions { display: grid; grid-template-columns: 1fr; gap: var(--space-16); }
+
+/* --- 9. SOCIALS CARD --- */
+#socials-card { text-align: center; background: var(--bg-color); box-shadow: none; border: 1px solid var(--border-color); }
+#socials-card h4 { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-8); }
+#socials-card p { color: var(--text-secondary); margin-bottom: var(--space-24); font-size: 0.95em; }
+.social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-12); }
+.social-btn { display: inline-flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-16); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; border: 1px solid var(--border-color); background: var(--card-bg-color); color: var(--text-primary); transition: var(--transition); }
+.social-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary-color); }
+.social-btn svg { width: 16px; height: 16px; }
+.social-btn.linkedin { color: #0A66C2; } .social-btn.github { color: #181717; } .social-btn.portfolio { color: var(--primary-color); }
+
+/* --- 10. RECORDS PAGE --- */
+#filters h2 { margin-bottom: var(--space-16); font-weight: 600; }
+.filter-controls { display: grid; grid-template-columns: 1fr; gap: var(--space-12); margin-bottom: var(--space-16); }
+.filter-controls select, .filter-controls input { width: 100%; padding: var(--space-12) var(--space-16); border: 1px solid var(--border-color); border-radius: 8px; font-size: 1em; font-family: 'Inter', sans-serif; background-color: var(--bg-color); }
+.table-container { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: var(--space-16); text-align: left; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
+th { background-color: var(--bg-color); font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.8px; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background-color: #fcfcfc; }
+.record-add { color: var(--success-color); font-weight: 600; }
+.record-subtract { color: var(--danger-color); font-weight: 600; }
+
+/* --- 11. MODAL --- */
+@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInModal { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* .modal {
+    display: none; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(2, 48, 71, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    animation: fadeInOverlay 0.3s ease;
+} 
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.95); margin: 10% auto; padding: var(--space-32); border-radius: 16px;
+    width: 90%; max-width: 500px; position: relative; box-shadow: var(--shadow-lg); border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInModal 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+} */ 
+
+.modal {
+    display: none; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; 
+    overflow-y: auto; /* Allow scrolling if content is tall */
+    background-color: rgba(2, 48, 71, 0.5); 
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    animation: fadeInOverlay 0.3s ease;
+    /* --- CENTERING FIX: Use Grid --- */
+    display: grid; /* Changed from none */
+    place-items: center; /* Vertically and horizontally centers the child */
+    padding: var(--space-16); /* Add padding around */
+}
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.95); 
+    /* --- CENTERING FIX: Remove margin: auto, rely on grid --- */
+    margin: 0; /* Changed from 10% auto */
+    padding: var(--space-32); 
+    border-radius: 16px;
+    width: 100%; /* Take available width within padding */
+    max-width: 500px; 
+    position: relative; 
+    box-shadow: var(--shadow-lg); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInModal 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.close-button {
+    color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute;
+    top: var(--space-16); right: var(--space-24); transition: var(--transition); cursor: pointer;
+}
+.close-button:hover, .close-button:focus { color: var(--text-primary); text-decoration: none; }
+
+/* Custom Confirmation Modal Styles */
+.modal-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); margin-top: var(--space-24); }
+.modal-buttons .btn { margin-bottom: 0; }
+#confirmation-modal p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* --- 12. FORMS --- */
+.form-group { margin-bottom: var(--space-24); }
+.form-group label { display: block; margin-bottom: var(--space-8); font-weight: 600; font-size: 0.95em; color: var(--text-primary); }
+.form-group input[type="text"], .form-group input[type="number"], .form-group textarea {
+    width: 100%; padding: var(--space-12) var(--space-16); border: 1px solid var(--border-color); border-radius: 8px;
+    font-size: 1em; font-family: 'Inter', sans-serif; transition: var(--transition); background: var(--card-bg-color);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px var(--primary-light); background: var(--card-bg-color);
+}
+
+/* --- 13. RESPONSIVENESS --- */
+@media (min-width: 600px) {
+    #actions { grid-template-columns: repeat(3, 1fr); }
+    .filter-controls { grid-template-columns: 2fr 1fr auto; }
+}
+@media (max-width: 599px) { /* Changed breakpoint slightly */
+    .modal-content { margin: 15% auto; padding: var(--space-24); }
+    .card { padding: var(--space-24); border-radius: 12px; }
+    main { padding-top: calc(var(--header-height-mobile) + var(--space-24)); } /* SPACING FIX mobile */
+    .modal-buttons { grid-template-columns: 1fr; }
+    
+    /* 2-COLUMN ACTION BUTTONS mobile */
+    #actions { grid-template-columns: 1fr 1fr; gap: var(--space-12); }
+    #actions .btn-neutral { grid-column: 1 / -1; }
+}
+
+/* --- 14. TOAST NOTIFICATION --- */
+@keyframes fadein { from { bottom: 0; opacity: 0; transform: translateX(-50%) scale(0.9); } to { bottom: 30px; opacity: 1; transform: translateX(-50%) scale(1); } }
+@keyframes fadeout { from { bottom: 30px; opacity: 1; transform: translateX(-50%) scale(1); } to { bottom: 0; opacity: 0; transform: translateX(-50%) scale(0.9); } }
+
+/*.toast {
+    visibility: hidden; min-width: 280px; background-color: var(--text-primary); color: var(--text-on-btn);
+    text-align: center; border-radius: 8px; padding: var(--space-16); position: fixed; z-index: 100;
+    left: 50%; transform: translateX(-50%); bottom: 30px; font-size: 1em; font-weight: 500; box-shadow: var(--shadow-lg);
+}
+.toast.show { visibility: visible; animation: fadein 0.3s ease-out, fadeout 0.3s ease-in 2.7s; }
+*/
+
+.toast {
+    visibility: hidden; 
+    min-width: 250px; /* Adjusted min-width */
+    max-width: 90%; /* Prevent stretching too wide */
+    width: auto; /* Let content determine width up to max */
+    background-color: var(--text-primary); color: var(--text-on-btn);
+    text-align: center; border-radius: 8px; padding: var(--space-16); 
+    position: fixed; z-index: 100;
+    left: 50%; transform: translateX(-50%); bottom: 30px; /* Centering */
+    font-size: 1em; font-weight: 500; box-shadow: var(--shadow-lg);
+    transition: visibility 0s linear 0.3s, opacity 0.3s ease-out, bottom 0.3s ease-out; /* Smoother fade out */
+    opacity: 0; /* Start hidden */
+}
+.toast.show { 
+    visibility: visible; 
+    opacity: 1;
+    bottom: 30px; /* Ensure it stays */
+    transition: visibility 0s linear 0s, opacity 0.3s ease-in, bottom 0.3s ease-in; /* Smoother fade in */
+    /* Remove animation, use transition instead */
+}
+
+.toast.success { background-color: var(--success-color); color: var(--text-on-accent); }
+.toast.error { background-color: var(--danger-color); color: var(--text-on-btn); }
+.toast.neutral { background-color: var(--neutral-color); }
+
+/* --- Styles for Revamped Welcome Screen --- */
+.welcome-logo {
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    margin-bottom: var(--space-16);
+    border-radius: 12px; /* Optional: slightly rounded corners */
+}
+
+/* Basic CSS Loader */
+.loader {
+    border: 4px solid var(--primary-light); /* Light border */
+    border-top: 4px solid var(--primary-color); /* Blue color for spinner */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: var(--space-32) auto; /* Center loader */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Google Sign-in Button Style */
+.google-signin-btn {
+    background-color: #4285F4; /* Google Blue */
+    color: white;
+    display: inline-flex; /* Use inline-flex to align icon and text */
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-12);
+    width: auto; /* Don't force full width */
+    padding: var(--space-12) var(--space-24);
+    margin-top: var(--space-32); /* Space above button */
+    border: none;
+    font-size: 1rem; /* Adjust font size */
+    box-shadow: var(--shadow-sm);
+}
+
+.google-signin-btn:hover {
+    background-color: #357ae8;
+    box-shadow: var(--shadow-md);
+}
+
+.google-signin-btn svg {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Ensure footer is positioned correctly on welcome */
+.body-welcome #main-footer {
+     position: absolute; /* Take out of flow */
+     bottom: var(--space-16); 
+     left: 0; right: 0; 
+     background: transparent; 
+     color: var(--text-on-dark); 
+}
+
+/* Adjust welcome card padding if needed */
+.welcome-card {
+    padding: var(--space-48) var(--space-32); 
+}
+
+/* --- Header Additions for Logout/Back --- */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12); /* Space between back link and logout */
+}
+
+.btn-small {
+    padding: var(--space-4) var(--space-12); /* Smaller padding */
+    font-size: 0.85em; /* Smaller font */
+    width: auto; /* Allow button to size naturally */
+}
+
+/* Ensure back link style matches header text color */
+header .back-link { 
+    color: var(--text-on-dark); 
+    text-decoration: none; 
+    font-size: 0.9em; /* Adjust as needed */
+    font-weight: 500; 
+    opacity: 0.8;
+}
+header .back-link:hover { opacity: 1; }
+
+/* Add styles from previous phase for loader, logo, etc. if not already there */
+.welcome-logo {
+    width: 80px; height: 80px; margin-bottom: var(--space-16); border-radius: 12px; 
+}
+
+/* Ensure Modals use grid for centering */
+.modal {
+    display: grid; /* Changed from none/block */
+    place-items: center;
+    padding: var(--space-16); 
+    /* Add other modal styles from previous phase */
+    position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; 
+    overflow-y: auto; background-color: rgba(2, 48, 71, 0.5); 
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    animation: fadeInOverlay 0.3s ease;
+}
+.modal-content {
+    margin: 0; /* Rely on grid for centering */
+    /* Add other modal-content styles from previous phase */
+    background-color: rgba(255, 255, 255, 0.95); padding: var(--space-32); 
+    border-radius: 16px; width: 100%; max-width: 500px; position: relative; 
+    box-shadow: var(--shadow-lg); border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInModal 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

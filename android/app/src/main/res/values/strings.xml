@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Peso Tracker</string>
+    <string name="title_activity_main">Peso Tracker</string>
+    <string name="package_name">com.jdnate.pesotracker</string>
+    <string name="custom_url_scheme">com.jdnate.pesotracker</string>
+</resources>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PesoTracker - Records</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+<body>
+
+    <header>
+        <div class="container header-container"> <div class="logo">🇵🇭 PesoTracker</div>
+            <div class="header-actions"> <a href="dashboard.html" class="back-link">&larr; Dashboard</a>
+                <button id="logout-btn" class="btn btn-neutral btn-small">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="filters" class="card">
+            <h2>Transaction Records</h2>
+            <div class="filter-controls">
+                <select id="filter-month"> <option value="">All Months</option> </select>
+                <input type="number" id="filter-year" placeholder="Year (e.g., 2025)">
+                <button id="btn-filter" class="btn btn-primary">Search</button>
+            </div>
+            <button id="btn-export-csv" class="btn btn-neutral">Export to CSV</button>
+        </section>
+
+        <section id="records-list" class="card">
+            <div class="table-container">
+                <table>
+                    <thead> <tr> <th>Name</th> <th>Date</th> <th>Amount</th> <th>Comment</th> </tr> </thead>
+                    <tbody id="records-tbody"> <tr> <td colspan="4" class="text-center">Loading records...</td> </tr> </tbody>
+                </table>
+            </div>
+        </section>
+        
+    </main>
+
+    <div id="toast-notification" class="toast"></div>
+
+    <footer id="main-footer"> <p>ESTABLISHED BY JAMES DARROL NATE</p> </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="capacitor.js"></script> 
+    <script type="module" src="app.js"></script> </body>
+</html>
