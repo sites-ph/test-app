@@ -1,0 +1,12 @@
+{
+  "indexes": [],
+  "fieldOverrides": []
+}
+{
+  "hosting": {
+    "site": "peso-tracker-app",
+
+    "public": "public",
+    ...
+  }
+}
